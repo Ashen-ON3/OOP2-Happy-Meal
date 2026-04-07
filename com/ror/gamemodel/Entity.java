@@ -16,14 +16,13 @@ public abstract class Entity {
     protected List<Skill> skills;
 
     // Updated Constructor to include maxMana
-    public Entity(String name, int maxHealth, int maxMana, int atk, int def) {
+    public Entity(String name, int maxHealth, int maxMana, int atk, int speed) {
         this.name = name;
         this.maxHealth = maxHealth;
         this.currentHealth = maxHealth;
         this.maxMana = maxMana;
         this.currentMana = maxMana;
         this.atk = atk;
-        this.def = def;
         this.speed = speed;
         this.shieldActive = false;
         this.skills = new ArrayList<>();

@@ -82,14 +82,14 @@ public class HeroSelection extends JFrame implements ActionListener {
         JPanel heroPanel = new JPanel(new GridLayout(2, 4, 15, 15));
         heroPanel.setOpaque(false);
 
-        mark = createHeroButton("Happy Mark", "images/mark.jpg");
-        ted = createHeroButton("Happy Ted", "images/ted.jpg");
-        den = createHeroButton("Happy Den", "images/den.jpg");
-        ashley = createHeroButton("Happy Ashley", "images/ashley.jpg");
-        vince = createHeroButton("Happy Vince", "images/vince.jpg");
-        zack = createHeroButton("Happy Zack", "images/zack.jpg");
-        clent = createHeroButton("Happy Clent", "images/clent.jpg");
-        trone = createHeroButton("Happy Trone", "images/trone.jpg");
+        mark = createHeroButton("Happy Mark", "images/characters/mark.jpg");
+        ted = createHeroButton("Happy Ted", "images/characters/ted.jpg");
+        den = createHeroButton("Happy Den", "images/characters/den.jpg");
+        ashley = createHeroButton("Happy Ashley", "images/characters/ashley.jpg");
+        vince = createHeroButton("Happy Vince", "images/characters/vince.jpg");
+        zack = createHeroButton("Happy Zack", "images/characters/zack.jpg");
+        clent = createHeroButton("Happy Clent", "images/characters/clent.jpg");
+        trone = createHeroButton("Happy Trone", "images/characters/trone.jpg");
 
         JButton[] heroButtons = {mark, ted, den, ashley, vince, zack, clent, trone};
         for(JButton b : heroButtons) {
@@ -200,8 +200,12 @@ public class HeroSelection extends JFrame implements ActionListener {
         Random rand = new Random();
         player2Hero = availableHeroes.get(rand.nextInt(availableHeroes.size()));
 
-        JOptionPane.showMessageDialog(this, "You selected: " + player1Hero + "\nEnemy selected: " + player2Hero, "Arcade Challenger", JOptionPane.WARNING_MESSAGE);
-        launchBattleArena();
+        JOptionPane.showMessageDialog(this,
+                "You selected: " + player1Hero + "\nEnemy selected: " + player2Hero + "\n\nUse W A S D to move!",
+                "Arcade Survival",
+                JOptionPane.WARNING_MESSAGE);
+
+        launchArcadeMode(); // <--- THIS IS THE CRUCIAL FIX
     }
 
     // --- THE ENGINE HOOK ---
@@ -213,6 +217,17 @@ public class HeroSelection extends JFrame implements ActionListener {
         System.out.println("DEBUG: Launching Arena! " + p1.getName() + " VS " + p2.getName());
 
         new GuiBattleArena(p1, p2).setVisible(true);
+        dispose();
+    }
+
+    // Launches the real-time 2D environment
+    private void launchArcadeMode() {
+        Entity p1 = createHeroEntity(player1Hero);
+        Entity p2 = createHeroEntity(player2Hero);
+
+        System.out.println("DEBUG: Launching 2D Arcade Engine!");
+
+        new com.ror.gameutil.ArcadeFrame(p1, p2).setVisible(true);
         dispose();
     }
 

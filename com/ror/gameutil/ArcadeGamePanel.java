@@ -81,7 +81,7 @@ public class ArcadeGamePanel extends JPanel implements Runnable, KeyListener {
             // 2. Load the High Atlas (MATH FULLY FIXED HERE)
             BufferedImage wallHighAtlas = ImageIO.read(new File("images/map/atlas_walls_high-16x32.png"));
             tlTop = wallHighAtlas.getSubimage(16, 0, 16, 16);  // Top Left Corner Wall -- NEEDS TO BE FIXED --
-            tmTop = wallHighAtlas.getSubimage(16, 64, 16, 32);  // Supposed to be Top Middle Wall -- NEEDS TO BE FIXED --
+            tmTop = wallHighAtlas.getSubimage(16, 64, 32, 32);  // Supposed to be Top Middle Wall -- NEEDS TO BE FIXED --
             trTop = wallHighAtlas.getSubimage(48, 0, 16, 16);  // Top Right Corner Wall -- NEEDS TO BE FIXED --
 
             tlFace = wallHighAtlas.getSubimage(16, 16, 16, 16);  // Face A.K.A. BOUNDERY/BORDER for Top Left Wall -- NEEDS TO BE FIXED --
